@@ -1,0 +1,23 @@
+{
+  "name": "icetoids",
+  "version": "0.0.1",
+  "description": "A web-playable implementation of the board game IceToids by Andy Looney.",
+  "main": "index.js",
+  "scripts": {
+    "test": "karma start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dougo/icetoids.git"
+  },
+  "keywords": [
+    "board game",
+    "Looney pyramids"
+  ],
+  "author": "Doug Orleans",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/dougo/icetoids/issues"
+  },
+  "homepage": "https://github.com/dougo/icetoids#readme"
+}
