@@ -7,6 +7,9 @@ Under construction...
 
 Run `npm i` to install dependencies.
 
+Run `npm start` in the background; it will open a browser window, which will refresh whenever a source file
+changes.
+
 ## Testing
 
-Run `npm test` in the background; it will re-run all the tests whenever a file changes.
+Run `npm test` in the background; it will re-run all the tests whenever a source or test file changes.
