@@ -10,18 +10,18 @@ describe('App', () => {
     expect(subject.find('h1')).to.have.text('IceToids');
 
     const svg = subject.find('svg');
-    expect(svg).to.have.attr('viewBox', '0 0 1000 1000');
+    expect(svg).to.have.attr('viewBox', '0 0 1200 1200');
     expect(svg).to.have.attr('width', '800');
 
     expect(svg).to.have.exactly(16).descendants('rect');
-    const rects = subject.find('rect');
+    const tiles = subject.find('rect');
 
-    expect(rects.first()).to.have.attr('width', '200');
-    expect(rects.first()).to.have.attr('height', '200');
-    expect(rects.first()).to.have.attr('x', '10');
-    expect(rects.first()).to.have.attr('y', '10');
+    expect(tiles.first()).to.have.attr('width', '200');
+    expect(tiles.first()).to.have.attr('height', '200');
+    expect(tiles.first()).to.have.attr('x', '220');
+    expect(tiles.first()).to.have.attr('y', '220');
 
-    expect(rects.last()).to.have.attr('x', '640');
-    expect(rects.last()).to.have.attr('y', '640');
+    expect(tiles.last()).to.have.attr('x', '850');
+    expect(tiles.last()).to.have.attr('y', '850');
   });
 });
