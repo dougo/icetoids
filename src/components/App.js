@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Tile from 'components/Tile';
+import Piece from 'components/Piece';
 
 export default class App extends Component {
   render() {
@@ -18,9 +19,9 @@ export default class App extends Component {
           <defs>
             <polygon id='piece' points='10,100 40,200 70,100' stroke='black' />
           </defs>
-          <use href='#piece' x='220' y='10' fill='red' />
-          <use href='#piece' x='280' y='10' fill='red' />
-          <use href='#piece' x='340' y='10' fill='red' />
+          <Piece col={1} />
+          <Piece col={1} x={60} />
+          <Piece col={1} x={120} />
         </svg>
       </div>
     );
