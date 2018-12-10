@@ -15,6 +15,12 @@ export default class App extends Component {
         <h1>IceToids</h1>
         <svg viewBox='0 0 1200 1200' width='800'>
           {tiles}
+          <defs>
+            <polygon id='piece' points='10,100 40,200 70,100' stroke='black' />
+          </defs>
+          <use href='#piece' x='220' y='10' fill='red' />
+          <use href='#piece' x='280' y='10' fill='red' />
+          <use href='#piece' x='340' y='10' fill='red' />
         </svg>
       </div>
     );
