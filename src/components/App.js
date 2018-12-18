@@ -17,7 +17,7 @@ export default class App extends Component {
         <svg viewBox='0 0 1200 1200' width='800'>
           {tiles}
           <defs>
-            <polygon id='piece' points='10,100 40,200 70,100' stroke='black' />
+            {Piece.def}
           </defs>
           <Piece col={1} />
           <Piece col={1} x={60} />

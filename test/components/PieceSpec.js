@@ -4,9 +4,21 @@ import { mount } from 'enzyme';
 import Piece from 'components/Piece';
 
 describe('Piece', () => {
-  function mountSubject(props = {}) {
-    return mount(<svg><Piece {...props} /></svg>).children();
-  }
+  const mountSVG = (component) => (
+    mount(<svg>{component}</svg>).children()
+  );
+
+  it('has a def', () => {
+    const subject = mountSVG(Piece.def);
+    expect(subject).to.have.attr('id', 'piece');
+    expect(subject).to.have.tagName('polygon');
+    expect(subject).to.have.attr('points', '10,100 40,200 70,100');
+    expect(subject).to.have.attr('stroke', 'black');
+  });
+
+  const mountSubject = (props = {}) => (
+    mountSVG(<Piece {...props} />)
+  );
 
   it('renders a use', () => {
     const subject = mountSubject();
