@@ -12,19 +12,22 @@ describe('App', () => {
     expect(svg).to.have.attr('viewBox', '0 0 1200 1200');
     expect(svg).to.have.attr('width', '800');
 
-    expect(svg).to.have.exactly(16).descendants('rect');
-    const tiles = subject.find('rect');
+    expect(svg).to.have.exactly(16).descendants('use[href="#tile"]');
+    const tiles = subject.find('use[href="#tile"]');
+    const tile = tiles.first();
 
-    expect(tiles.first()).to.have.attr('width', '200');
-    expect(tiles.first()).to.have.attr('height', '200');
-    expect(tiles.first()).to.have.attr('x', '220');
-    expect(tiles.first()).to.have.attr('y', '220');
+    const tileDef = subject.find(tile.instance().getAttribute('href'));
+    expect(tileDef).to.have.attr('width', '200');
+    expect(tileDef).to.have.attr('height', '200');
+
+    expect(tile).to.have.attr('x', '220');
+    expect(tile).to.have.attr('y', '220');
 
     expect(tiles.last()).to.have.attr('x', '850');
     expect(tiles.last()).to.have.attr('y', '850');
 
-    expect(svg).to.have.descendants('use');
-    const pieces = subject.find('use');
+    expect(svg).to.have.descendants('use[href="#piece"]');
+    const pieces = subject.find('use[href="#piece"]');
     const piece = pieces.first();
 
     expect(piece).to.have.attr('x', '220');

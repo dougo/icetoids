@@ -15,10 +15,11 @@ export default class App extends Component {
       <div>
         <h1>IceToids</h1>
         <svg viewBox='0 0 1200 1200' width='800'>
-          {tiles}
           <defs>
+            {Tile.def}
             {Piece.def}
           </defs>
+          {tiles}
           <Piece col={1} />
           <Piece col={1} x={60} />
           <Piece col={1} x={120} />
