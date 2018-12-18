@@ -1,6 +1,5 @@
 import React from 'react';
-import { expect } from 'chai';
-import { mount } from 'enzyme';
+import { expect, mount } from 'testHelper';
 import App from 'components/App';
 
 describe('App', () => {

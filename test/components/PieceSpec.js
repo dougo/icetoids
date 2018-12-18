@@ -1,13 +1,8 @@
 import React from 'react';
-import { expect } from 'chai';
-import { mount } from 'enzyme';
+import { expect, mountSVG } from 'testHelper';
 import Piece from 'components/Piece';
 
 describe('Piece', () => {
-  const mountSVG = (component) => (
-    mount(<svg>{component}</svg>).children()
-  );
-
   it('has a def', () => {
     const subject = mountSVG(Piece.def);
     expect(subject).to.have.attr('id', 'piece');

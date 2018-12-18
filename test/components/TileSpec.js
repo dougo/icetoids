@@ -1,11 +1,10 @@
 import React from 'react';
-import { expect } from 'chai';
-import { mount } from 'enzyme';
+import { expect, mountSVG } from 'testHelper';
 import Tile from 'components/Tile';
 
 describe('Tile', () => {
   function mountSubject(props = {}) {
-    return mount(<svg><Tile {...props} /></svg>).children();
+    return mountSVG(<Tile {...props} />);
   }
 
   it('renders a 200x200 skyblue-bordered linen square', () => {
