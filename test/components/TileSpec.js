@@ -21,13 +21,5 @@ describe('Tile', () => {
     const subject = mountSubject();
     expect(subject).to.have.tagName('use');
     expect(subject).to.have.attr('href', '#tile');
-    expect(subject).to.have.attr('x', '0');
-    expect(subject).to.have.attr('y', '0');
-  });
-
-  it('accepts row/col props, with 5% space between', () => {
-    const subject = mountSubject({ row: 2, col: 3 });
-    expect(subject).to.have.attr('x', '630');
-    expect(subject).to.have.attr('y', '420');
   });
 });

@@ -13,18 +13,14 @@ describe('App', () => {
     expect(svg).to.have.attr('width', '1050');
 
     expect(svg).to.have.exactly(16).descendants('use[href="#tile"]');
-    const tiles = subject.find('use[href="#tile"]');
-    const tile = tiles.first();
+    const upperLeft = svg.find('g[transform="translate(210,210)"]');
+    const tile = upperLeft.find('use[href="#tile"]');
 
     const tileDef = subject.find(tile.instance().getAttribute('href'));
     expect(tileDef).to.have.attr('width', '200');
     expect(tileDef).to.have.attr('height', '200');
 
-    expect(tile).to.have.attr('x', '210');
-    expect(tile).to.have.attr('y', '210');
-
-    expect(tiles.last()).to.have.attr('x', '840');
-    expect(tiles.last()).to.have.attr('y', '840');
+    expect(svg).to.have.exactly(1).descendants('g[transform="translate(840,840)"]');
 
     const redHome = svg.find('g[transform="translate(210,0)"]');
     expect(redHome).to.have.exactly(3).descendants('use[href="#piece"]');
