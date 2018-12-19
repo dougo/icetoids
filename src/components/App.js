@@ -20,11 +20,17 @@ export default class App extends Component {
             {Piece.def}
           </defs>
           {tiles}
-          <Piece col={1} color='red' />
-          <Piece col={1} x={60} color='red' />
-          <Piece col={1} x={120} color='red' />
-          <Piece row={1} col={5} color='green' direction='left' />
-          <Piece row={2} col={0} y={-120} color='blue' direction='right' />
+          <g transform='translate(210,0)'>
+            <Piece color='red' />
+            <Piece x={60} color='red' />
+            <Piece x={120} color='red' />
+          </g>
+          <g transform='translate(1050,210)'>
+            <Piece color='green' direction='left' />
+          </g>
+          <g transform='translate(0,420)'>
+            <Piece y={-120} color='blue' direction='right' />
+          </g>
         </svg>
       </div>
     );
