@@ -8,12 +8,10 @@ export default class Piece extends Component {
   }
 
   render() {
-    const { row = 0, col = 0, x = 0, y = 0, color, direction } = this.props;
-    const absX = col*210+x;
-    const absY = row*210+y;
-    const transform = direction && `rotate(${this.degrees(direction)},${absX+100},${absY+100})`;
+    const { x = 0, y = 0, color, direction } = this.props;
+    const transform = direction && `rotate(${this.degrees(direction)},${x+100},${y+100})`;
     return (
-      <use href='#piece' x={absX} y={absY} fill={color} transform={transform} />
+      <use href='#piece' x={x} y={y} fill={color} transform={transform} />
     );
   }
 }

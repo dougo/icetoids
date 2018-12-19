@@ -25,16 +25,10 @@ describe('Piece', () => {
     expect(subject).not.to.have.attr('transform');
   });
 
-  it('accepts row/col props, with 5% space between', () => {
-    const subject = mountSubject({ row: 2, col: 3 });
-    expect(subject).to.have.attr('x', '630');
-    expect(subject).to.have.attr('y', '420');
-  });
-
   it('accepts x/y local offset', () => {
-    const subject = mountSubject({ row: 2, col: 3, x: 60, y: 100 });
-    expect(subject).to.have.attr('x', '690');
-    expect(subject).to.have.attr('y', '520');
+    const subject = mountSubject({ x: 60, y: 100 });
+    expect(subject).to.have.attr('x', '60');
+    expect(subject).to.have.attr('y', '100');
   });
 
   it('accepts a color', () => {
@@ -45,11 +39,6 @@ describe('Piece', () => {
   it('accepts a direction', () => {
     const subject = mountSubject({ direction: 'left' });
     expect(subject).to.have.attr('transform', 'rotate(90,100,100)');
-  });
-
-  it('accepts a direction and row/col', () => {
-    const subject = mountSubject({ row: 1, col: 2, direction: 'right' });
-    expect(subject).to.have.attr('transform', 'rotate(270,520,310)');
   });
 
   it('accepts a direction and x/y', () => {
