@@ -6,7 +6,7 @@ export default class Tile extends Component {
   render() {
     const { row = 0, col = 0 } = this.props;
     return (
-      <use href='#tile' x={col*210+10} y={row*210+10} />
+      <use href='#tile' x={col*210} y={row*210} />
     );
   }
 }

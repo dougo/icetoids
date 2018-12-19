@@ -14,7 +14,7 @@ export default class App extends Component {
     return (
       <div>
         <h1>IceToids</h1>
-        <svg viewBox='0 0 1200 1200' width='800'>
+        <svg viewBox='100 100 1050 1050' width='1050'>
           <defs>
             {Tile.def}
             {Piece.def}
