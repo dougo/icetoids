@@ -20,9 +20,11 @@ export default class App extends Component {
             {Piece.def}
           </defs>
           {tiles}
-          <Piece col={1} />
-          <Piece col={1} x={60} />
-          <Piece col={1} x={120} />
+          <Piece col={1} color='red' />
+          <Piece col={1} x={60} color='red' />
+          <Piece col={1} x={120} color='red' />
+          <Piece row={1} col={5} color='green' direction='left' />
+          <Piece row={2} col={0} y={-120} color='blue' direction='right' />
         </svg>
       </div>
     );

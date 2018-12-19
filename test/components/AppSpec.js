@@ -45,5 +45,17 @@ describe('App', () => {
     
     const piece3 = pieces.at(2);
     expect(piece3).to.have.attr('x', '340');
+
+    const piece4 = pieces.at(3);
+    expect(piece4).to.have.attr('x', '1060');
+    expect(piece4).to.have.attr('y', '220');
+    expect(piece4).to.have.attr('fill', 'green');
+    expect(piece4).to.have.attr('transform', 'rotate(90,1160,320)');
+
+    const piece5 = pieces.at(4);
+    expect(piece5).to.have.attr('x', '10');
+    expect(piece5).to.have.attr('y', '310');
+    expect(piece5).to.have.attr('fill', 'blue');
+    expect(piece5).to.have.attr('transform', 'rotate(270,110,410)');
   });
 });
