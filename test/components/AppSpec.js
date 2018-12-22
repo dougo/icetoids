@@ -3,8 +3,11 @@ import { expect, mount } from 'testHelper';
 import App from 'components/App';
 
 describe('App', () => {
+  const root = document.createElement('div');
+  document.body.append(root);
+
   it('renders a title and tiles', () => {
-    const subject = mount(<App />);
+    const subject = mount(<App />, { attachTo: root });
     expect(subject).to.have.descendants('h1');
     expect(subject.find('h1')).to.have.text('IceToids');
 
@@ -15,10 +18,7 @@ describe('App', () => {
     expect(svg).to.have.exactly(16).descendants('use[href="#tile"]');
     const upperLeft = svg.find('g[transform="translate(210,210)"]');
     const tile = upperLeft.find('use[href="#tile"]');
-
-    const tileDef = subject.find(tile.instance().getAttribute('href'));
-    expect(tileDef).to.have.attr('width', '200');
-    expect(tileDef).to.have.attr('height', '200');
+    expect(tile).to.have.bbox({ x: 210, y: 210, width: 200, height: 200 });
 
     expect(svg).to.have.exactly(1).descendants('g[transform="translate(840,840)"]');
 
@@ -27,8 +27,7 @@ describe('App', () => {
     const pieces = redHome.find('use[href="#piece"]');
     const piece = pieces.first();
 
-    expect(piece).to.have.attr('x', '0');
-    expect(piece).to.have.attr('y', '0');
+    expect(piece).to.have.bbox({ x: 220, y: 100, width: 60, height: 100 });
     expect(piece).to.have.attr('fill', 'red');
 
     const instanceRoot = subject.find(piece.instance().getAttribute('href'));
@@ -36,27 +35,22 @@ describe('App', () => {
     expect(instanceRoot).to.have.attr('stroke', 'black');
 
     const piece2 = pieces.at(1);
-    expect(piece2).to.have.attr('x', '60');
-    expect(piece2).to.have.attr('y', '0');
+    expect(piece2).to.have.bbox({ x: 280, y: 100 });
     expect(piece2).to.have.attr('fill', 'red');
     
     const piece3 = pieces.at(2);
-    expect(piece3).to.have.attr('x', '120');
+    expect(piece3).to.have.bbox({ x: 340 });
 
     const greenHome = svg.find('g[transform="translate(1050,210)"]');
     expect(greenHome).to.have.exactly(1).descendants('use[href="#piece"]');
     const piece4 = greenHome.find('use[href="#piece"]');
-    expect(piece4).to.have.attr('x', '0');
-    expect(piece4).to.have.attr('y', '0');
+    expect(piece4).to.have.bbox({ x: 1050, y: 220, width: 100, height: 60 });
     expect(piece4).to.have.attr('fill', 'green');
-    expect(piece4).to.have.attr('transform', 'rotate(90,100,100)');
 
     const blueHome = svg.find('g[transform="translate(0,420)"]');
     expect(blueHome).to.have.exactly(1).descendants('use[href="#piece"]');
     const piece5 = blueHome.find('use[href="#piece"]');
-    expect(piece5).to.have.attr('x', '0');
-    expect(piece5).to.have.attr('y', '-120');
+    expect(piece5).to.have.bbox({ x: 100, y: 430, width: 100, height: 60 });
     expect(piece5).to.have.attr('fill', 'blue');
-    expect(piece5).to.have.attr('transform', 'rotate(270,100,-20)');
   });
 });
