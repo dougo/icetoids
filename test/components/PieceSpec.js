@@ -7,7 +7,7 @@ describe('Piece', () => {
     const subject = mountSVG(Piece.def);
     expect(subject).to.have.attr('id', 'piece');
     expect(subject).to.have.tagName('polygon');
-    expect(subject).to.have.attr('points', '10,100 40,0 70,100');
+    expect(subject).to.have.attr('points', '-30,50 0,-50 30,50');
     expect(subject).to.have.attr('stroke', 'black');
   });
 
@@ -38,11 +38,11 @@ describe('Piece', () => {
 
   it('accepts a direction', () => {
     const subject = mountSubject({ direction: 'left' });
-    expect(subject).to.have.attr('transform', 'rotate(270,100,100)');
+    expect(subject).to.have.attr('transform', 'rotate(270,0,0)');
   });
 
   it('accepts a direction and x/y', () => {
     const subject = mountSubject({ x: 80, y: 40, direction: 'down' });
-    expect(subject).to.have.attr('transform', 'rotate(180,180,140)');
+    expect(subject).to.have.attr('transform', 'rotate(180,80,40)');
   });
 });

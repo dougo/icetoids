@@ -22,15 +22,15 @@ export default class App extends Component {
           </defs>
           {tiles}
           <Space col={1}>
-            <Piece x={-120} color='red' direction='down' />
-            <Piece x={-60} color='red' direction='down' />
-            <Piece color='red' direction='down' />
+            <Piece x={40} y={150} color='red' direction='down' />
+            <Piece x={100} y={150} color='red' direction='down' />
+            <Piece x={160} y={150} color='red' direction='down' />
           </Space>
           <Space row={1} col={5}>
-            <Piece y={-120} color='green' direction='left' />
+            <Piece x={50} y={40} color='green' direction='left' />
           </Space>
           <Space row={2}>
-            <Piece color='blue' direction='right' />
+            <Piece x={150} y={40} color='blue' direction='right' />
           </Space>
         </svg>
       </div>

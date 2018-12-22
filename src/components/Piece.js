@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 export default class Piece extends Component {
-  static def = <polygon id='piece' points='10,100 40,0 70,100' stroke='black' />;
+  static def = <polygon id='piece' points='-30,50 0,-50 30,50' stroke='black' />;
 
   degrees(direction) {
     return ['up', 'right', 'down', 'left'].indexOf(direction) * 90;
@@ -9,7 +9,7 @@ export default class Piece extends Component {
 
   render() {
     const { x = 0, y = 0, color, direction } = this.props;
-    const transform = direction && `rotate(${this.degrees(direction)},${x+100},${y+100})`;
+    const transform = direction && `rotate(${this.degrees(direction)},${x},${y})`;
     return (
       <use href='#piece' x={x} y={y} fill={color} transform={transform} />
     );
