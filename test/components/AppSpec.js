@@ -20,26 +20,39 @@ describe('App', () => {
     expect(tiles.first()).to.have.bbox({ x: 210, y: 210, width: 200, height: 200 });
     expect(tiles.last()).to.have.bbox({ x: 840, y: 840 });
 
-    expect(svg).to.have.exactly(5).descendants('use[href="#piece"]');
+    expect(svg).to.have.exactly(12).descendants('use[href="#piece"]');
     const pieces = svg.find('use[href="#piece"]');
-    const piece = pieces.first();
+    expect(pieces.at(0)).to.have.bbox({ x: 220, y: 100, width: 60, height: 100 });
+    expect(pieces.at(0)).to.have.attr('fill', 'red');
 
-    expect(piece).to.have.bbox({ x: 220, y: 100, width: 60, height: 100 });
-    expect(piece).to.have.attr('fill', 'red');
-
-    const piece2 = pieces.at(1);
-    expect(piece2).to.have.bbox({ x: 280, y: 100 });
-    expect(piece2).to.have.attr('fill', 'red');
+    expect(pieces.at(1)).to.have.bbox({ x: 280, y: 100 });
+    expect(pieces.at(1)).to.have.attr('fill', 'red');
     
-    const piece3 = pieces.at(2);
-    expect(piece3).to.have.bbox({ x: 340 });
+    expect(pieces.at(2)).to.have.bbox({ x: 340 });
 
-    const piece4 = pieces.at(3);
-    expect(piece4).to.have.bbox({ x: 1050, y: 220, width: 100, height: 60 });
-    expect(piece4).to.have.attr('fill', 'green');
+    expect(pieces.at(3)).to.have.bbox({ x: 1050, y: 220, width: 100, height: 60 });
+    expect(pieces.at(3)).to.have.attr('fill', 'green');
 
-    const piece5 = pieces.at(4);
-    expect(piece5).to.have.bbox({ x: 100, y: 430, width: 100, height: 60 });
-    expect(piece5).to.have.attr('fill', 'blue');
+    expect(pieces.at(4)).to.have.bbox({ x: 1050, y: 280 });
+    expect(pieces.at(4)).to.have.attr('fill', 'green');
+
+    expect(pieces.at(5)).to.have.bbox({ x: 1050, y: 340 });
+
+    expect(pieces.at(6)).to.have.bbox({ x: 100, y: 430, width: 100, height: 60 });
+    expect(pieces.at(6)).to.have.attr('fill', 'blue');
+
+    expect(pieces.at(7)).to.have.bbox({ x: 100, y: 490 });
+    expect(pieces.at(7)).to.have.attr('fill', 'blue');
+
+    expect(pieces.at(8)).to.have.bbox({ x: 100, y: 550 });
+
+    expect(pieces.at(9)).to.have.bbox({ x: 640, y: 1050, width: 60, height: 100 });
+    expect(pieces.at(9)).to.have.attr('fill', 'yellow');
+
+    expect(pieces.at(10)).to.have.bbox({ x: 700, y: 1050 });
+    expect(pieces.at(10)).to.have.attr('fill', 'yellow');
+
+    expect(pieces.at(11)).to.have.bbox({ x: 760, y: 1050 });
+    
   });
 });

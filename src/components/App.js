@@ -28,9 +28,18 @@ export default class App extends Component {
           </Space>
           <Space row={1} col={5}>
             <Piece x={-50} y={-60} color='green' direction='left' />
+            <Piece x={-50} y={0} color='green' direction='left' />
+            <Piece x={-50} y={60} color='green' direction='left' />
           </Space>
           <Space row={2}>
             <Piece x={50} y={-60} color='blue' direction='right' />
+            <Piece x={50} y={0} color='blue' direction='right' />
+            <Piece x={50} y={60} color='blue' direction='right' />
+          </Space>
+          <Space row={5} col={3}>
+            <Piece x={-60} y={-50} color='yellow' direction='up' />
+            <Piece x={0} y={-50} color='yellow' direction='up' />
+            <Piece x={60} y={-50} color='yellow' direction='up' />
           </Space>
         </svg>
       </div>
