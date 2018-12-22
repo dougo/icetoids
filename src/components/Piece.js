@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
 export default class Piece extends Component {
-  static def = <polygon id='piece' points='10,100 40,200 70,100' stroke='black' />;
+  static def = <polygon id='piece' points='10,100 40,0 70,100' stroke='black' />;
 
   degrees(direction) {
-    return ['down', 'left', 'up', 'right'].indexOf(direction) * 90;
+    return ['up', 'right', 'down', 'left'].indexOf(direction) * 90;
   }
 
   render() {
