@@ -9,6 +9,7 @@ describe('Piece', () => {
     expect(subject).to.have.tagName('polygon');
     expect(subject).to.have.attr('points', '-30,50 0,-50 30,50');
     expect(subject).to.have.attr('stroke', 'black');
+    expect(subject).to.have.attr('cursor', 'grab');
   });
 
   const mountSubject = (props = {}) => (
@@ -44,5 +45,12 @@ describe('Piece', () => {
   it('accepts a direction and x/y', () => {
     const subject = mountSubject({ x: 80, y: 40, direction: 'down' });
     expect(subject).to.have.attr('transform', 'rotate(180,80,40)');
+  });
+
+  it('calls move when clicked on', () => {
+    const move = sinon.stub();
+    const subject = mountSubject({ move });
+    subject.simulate('click');
+    expect(move).to.have.been.called;
   });
 });

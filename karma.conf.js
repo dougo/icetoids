@@ -1,7 +1,7 @@
 module.exports = function(config) {
   config.set({
     browsers: ['ChromeHeadless'],
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'sinon-chai'],
     files: [{
       pattern: 'test/index.js'
     }],

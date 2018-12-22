@@ -12,6 +12,8 @@ export default class App extends Component {
       }
     }
 
+    const row = this.state && this.state.moved ? 1 : 0;
+
     return (
       <div>
         <h1>IceToids</h1>
@@ -21,8 +23,11 @@ export default class App extends Component {
             {Piece.def}
           </defs>
           {tiles}
+          <Space row={row} col={1}>
+            <Piece x={-60} y={50} color='red' direction='down'
+                   move={() => this.setState({ moved: true })} />}
+          </Space>
           <Space col={1}>
-            <Piece x={-60} y={50} color='red' direction='down' />
             <Piece x={0} y={50} color='red' direction='down' />
             <Piece x={60} y={50} color='red' direction='down' />
           </Space>

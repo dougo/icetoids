@@ -6,8 +6,12 @@ describe('App', () => {
   const root = document.createElement('div');
   document.body.append(root);
 
+  const mountSubject = () => (
+    mount(<App />, { attachTo: root })
+  );
+
   it('renders a title and tiles', () => {
-    const subject = mount(<App />, { attachTo: root });
+    const subject = mountSubject();
     expect(subject).to.have.descendants('h1');
     expect(subject.find('h1')).to.have.text('IceToids');
 
@@ -53,6 +57,13 @@ describe('App', () => {
     expect(pieces.at(10)).to.have.attr('fill', 'yellow');
 
     expect(pieces.at(11)).to.have.bbox({ x: 760, y: 1050 });
-    
+  });
+
+  it('moves a piece when you click on it', () => {
+    const subject = mountSubject();
+    const piece = subject.find('use[href="#piece"]').first();
+    expect(piece).to.have.bbox({ x: 220, y: 100 });
+    piece.simulate('click');
+    expect(piece).to.have.bbox({ x: 220, y: 310 });
   });
 });
