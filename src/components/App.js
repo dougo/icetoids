@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { combineReducers } from 'redux';
 import * as actions from 'actions';
-import reducer from 'reducers/piecesReducer';
+import * as reducers from 'reducers';
 import Space from 'components/Space';
 import Tile from 'components/Tile';
 import Piece from 'components/Piece';
+
+const reducer = combineReducers(reducers);
 
 export default class App extends Component {
   constructor(props) {
@@ -16,7 +19,7 @@ export default class App extends Component {
   }
 
   makePiece(id, props) {
-    const { row, col } = this.state[id].position;
+    const { row, col } = this.state.pieces[id].position;
     return (
       <Space row={row} col={col}>
         <Piece {...props} move={() => this.move(id, props.direction)}/>
