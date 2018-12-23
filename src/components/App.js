@@ -1,53 +1,28 @@
 import React, { Component } from 'react';
+import * as actions from 'actions';
+import reducer from 'reducers/piecesReducer';
 import Space from 'components/Space';
 import Tile from 'components/Tile';
 import Piece from 'components/Piece';
 
-function nextPosition({ row, col }, direction) {
-  switch (direction) {
-  case 'down':
-    return { row: row + 1, col };
-  case 'up':
-    return { row: row - 1, col };
-  case 'right':
-    return { col: col + 1, row };
-  case 'left':
-    return { col: col - 1, row };
-  }
-}
-
-function nextState(state, id, direction) {
-  return { ...state, [id]: { position: nextPosition(state[id].position, direction) } };
-}
-
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      red1: { position: { row: 0, col: 1 } },
-      red2: { position: { row: 0, col: 1 } },
-      red3: { position: { row: 0, col: 1 } },
-      green1: { position: { row: 1, col: 5 } },
-      green2: { position: { row: 1, col: 5 } },
-      green3: { position: { row: 1, col: 5 } },
-      blue1: { position: { row: 2, col: 0 } },
-      blue2: { position: { row: 2, col: 0 } },
-      blue3: { position: { row: 2, col: 0 } },
-      yellow1: { position: { row: 5, col: 3 } },
-      yellow2: { position: { row: 5, col: 3 } },
-      yellow3: { position: { row: 5, col: 3 } }
-    };
+    this.state = reducer();
+  }
+
+  move(id, direction) {
+    this.setState(reducer(this.state, actions.move(id, direction)));
   }
 
   makePiece(id, props) {
     const { row, col } = this.state[id].position;
     return (
       <Space row={row} col={col}>
-        <Piece {...props} move={() => this.setState(nextState(this.state, id, props.direction))}/>
+        <Piece {...props} move={() => this.move(id, props.direction)}/>
       </Space>
     );
   }
-
 
   render() {
     const tiles = [];
