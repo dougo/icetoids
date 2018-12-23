@@ -12,12 +12,16 @@ function nextPosition({ row, col }, direction) {
   }
 }
 
+function nextState(state, piece, direction) {
+  return { ...state, [piece]: { position: nextPosition(state[piece].position, direction) } };
+}
+
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pos: { row: 0, col: 1 },
-      pos2: { row: 5, col: 3 }
+      red1: { position: { row: 0, col: 1 } },
+      yellow3: { position: { row: 5, col: 3 } }
     };
   }
 
@@ -38,9 +42,9 @@ export default class App extends Component {
             {Piece.def}
           </defs>
           {tiles}
-          <Space row={this.state.pos.row} col={this.state.pos.col}>
+          <Space row={this.state.red1.position.row} col={this.state.red1.position.col}>
             <Piece x={-60} y={50} color='red' direction='down'
-                   move={() => this.setState({ pos: nextPosition(this.state.pos, 'down') })} />}
+                   move={() => this.setState(nextState(this.state, 'red1', 'down'))} />}
           </Space>
           <Space col={1}>
             <Piece x={0} y={50} color='red' direction='down' />
@@ -60,9 +64,9 @@ export default class App extends Component {
             <Piece x={-60} y={-50} color='yellow' direction='up' />
             <Piece x={0} y={-50} color='yellow' direction='up' />
           </Space>
-          <Space row={this.state.pos2.row} col={this.state.pos2.col}>
+          <Space row={this.state.yellow3.position.row} col={this.state.yellow3.position.col}>
             <Piece x={60} y={-50} color='yellow' direction='up'
-                   move={() => this.setState({ pos2: nextPosition(this.state.pos2, 'up') })} />
+                   move={() => this.setState(nextState(this.state, 'yellow3', 'up'))} />
           </Space>
         </svg>
       </div>
