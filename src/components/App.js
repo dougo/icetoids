@@ -9,6 +9,10 @@ function nextPosition({ row, col }, direction) {
     return { row: row + 1, col };
   case 'up':
     return { row: row - 1, col };
+  case 'right':
+    return { col: col + 1, row };
+  case 'left':
+    return { col: col - 1, row };
   }
 }
 
@@ -21,6 +25,16 @@ export default class App extends Component {
     super(props);
     this.state = {
       red1: { position: { row: 0, col: 1 } },
+      red2: { position: { row: 0, col: 1 } },
+      red3: { position: { row: 0, col: 1 } },
+      green1: { position: { row: 1, col: 5 } },
+      green2: { position: { row: 1, col: 5 } },
+      green3: { position: { row: 1, col: 5 } },
+      blue1: { position: { row: 2, col: 0 } },
+      blue2: { position: { row: 2, col: 0 } },
+      blue3: { position: { row: 2, col: 0 } },
+      yellow1: { position: { row: 5, col: 3 } },
+      yellow2: { position: { row: 5, col: 3 } },
       yellow3: { position: { row: 5, col: 3 } }
     };
   }
@@ -53,25 +67,17 @@ export default class App extends Component {
           </defs>
           {tiles}
           {this.makePiece('red1', { x: -60, y: 50, color: 'red', direction: 'down' })}
-          <Space col={1}>
-            <Piece x={0} y={50} color='red' direction='down' />
-            <Piece x={60} y={50} color='red' direction='down' />
-          </Space>
-          <Space row={1} col={5}>
-            <Piece x={-50} y={-60} color='green' direction='left' />
-            <Piece x={-50} y={0} color='green' direction='left' />
-            <Piece x={-50} y={60} color='green' direction='left' />
-          </Space>
-          <Space row={2}>
-            <Piece x={50} y={-60} color='blue' direction='right' />
-            <Piece x={50} y={0} color='blue' direction='right' />
-            <Piece x={50} y={60} color='blue' direction='right' />
-          </Space>
-          <Space row={5} col={3}>
-            <Piece x={-60} y={-50} color='yellow' direction='up' />
-            <Piece x={0} y={-50} color='yellow' direction='up' />
-          </Space>
-          {this.makePiece('yellow3', { x: 60, y: -50, color: 'yellow', direction: 'up' })}
+          {this.makePiece('red2', { x:   0, y: 50, color: 'red', direction: 'down' })}
+          {this.makePiece('red3', { x:  60, y: 50, color: 'red', direction: 'down' })}
+          {this.makePiece('green1', { y: -60, x: -50, color: 'green', direction: 'left' })}
+          {this.makePiece('green2', { y:   0, x: -50, color: 'green', direction: 'left' })}
+          {this.makePiece('green3', { y:  60, x: -50, color: 'green', direction: 'left' })}
+          {this.makePiece('blue1', { y: -60, x: 50, color: 'blue', direction: 'right' })}
+          {this.makePiece('blue2', { y:   0, x: 50, color: 'blue', direction: 'right' })}
+          {this.makePiece('blue3', { y:  60, x: 50, color: 'blue', direction: 'right' })}
+          {this.makePiece('yellow1', { x: -60, y: -50, color: 'yellow', direction: 'up' })}
+          {this.makePiece('yellow2', { x:   0, y: -50, color: 'yellow', direction: 'up' })}
+          {this.makePiece('yellow3', { x:  60, y: -50, color: 'yellow', direction: 'up' })}
         </svg>
       </div>
     );
