@@ -1,14 +1,18 @@
 import React from 'react';
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
 import { expect, mount } from 'testHelper';
 import App from 'components/App';
+import * as reducers from 'reducers';
 
 describe('App', () => {
   const root = document.createElement('div');
   document.body.append(root);
 
-  const mountSubject = () => (
-    mount(<App />, { attachTo: root })
-  );
+  const mountSubject = () => {
+    const store = createStore(combineReducers(reducers));
+    return mount(<Provider store={store}><App /></Provider>, { attachTo: root });
+  };
 
   it('renders a title and tiles', () => {
     const subject = mountSubject();

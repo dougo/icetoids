@@ -1,28 +1,16 @@
 import React, { Component } from 'react';
-import { combineReducers } from 'redux';
+import { connect } from 'react-redux';
 import * as actions from 'actions';
-import * as reducers from 'reducers';
 import Space from 'components/Space';
 import Tile from 'components/Tile';
 import Piece from 'components/Piece';
 
-const reducer = combineReducers(reducers);
-
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = reducer();
-  }
-
-  move(id, direction) {
-    this.setState(reducer(this.state, actions.move(id, direction)));
-  }
-
+class App extends Component {
   makePiece(id, props) {
-    const { row, col } = this.state.pieces[id].position;
+    const { row, col } = this.props.pieces[id].position;
     return (
       <Space row={row} col={col}>
-        <Piece {...props} move={() => this.move(id, props.direction)}/>
+        <Piece {...props} move={() => this.props.move(id, props.direction)}/>
       </Space>
     );
   }
@@ -61,3 +49,5 @@ export default class App extends Component {
     );
   }
 }
+
+export default connect(state => state, actions)(App);
