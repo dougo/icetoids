@@ -65,5 +65,10 @@ describe('App', () => {
     expect(piece).to.have.bbox({ x: 220, y: 100 });
     piece.simulate('click');
     expect(piece).to.have.bbox({ x: 220, y: 310 });
+
+    const piece2 = subject.find('use[href="#piece"]').last();
+    expect(piece2).to.have.bbox({ x: 760, y: 1050 });
+    piece2.simulate('click');
+    expect(piece2).to.have.bbox({ x: 760, y: 840 });
   });
 });
