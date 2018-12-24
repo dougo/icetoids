@@ -7,10 +7,10 @@ import Piece from 'components/Piece';
 
 class App extends Component {
   makePiece(id, props) {
-    const { row, col } = this.props.pieces[id].position;
+    const { position: { row, col }, direction } = this.props.pieces[id];
     return (
       <Space row={row} col={col}>
-        <Piece {...props} move={() => this.props.move(id, props.direction)}/>
+        <Piece {...props} direction={direction} move={() => this.props.move(id, direction)}/>
       </Space>
     );
   }
@@ -29,21 +29,21 @@ class App extends Component {
         <svg viewBox='100 100 1050 1050' width='1050'>
           <defs>
             {Tile.def}
-            {Piece.def}
+            {Piece.defs}
           </defs>
           {tiles}
-          {this.makePiece('red1', { x: -60, y: 50, color: 'red', direction: 'down' })}
-          {this.makePiece('red2', { x:   0, y: 50, color: 'red', direction: 'down' })}
-          {this.makePiece('red3', { x:  60, y: 50, color: 'red', direction: 'down' })}
-          {this.makePiece('green1', { y: -60, x: -50, color: 'green', direction: 'left' })}
-          {this.makePiece('green2', { y:   0, x: -50, color: 'green', direction: 'left' })}
-          {this.makePiece('green3', { y:  60, x: -50, color: 'green', direction: 'left' })}
-          {this.makePiece('blue1', { y: -60, x: 50, color: 'blue', direction: 'right' })}
-          {this.makePiece('blue2', { y:   0, x: 50, color: 'blue', direction: 'right' })}
-          {this.makePiece('blue3', { y:  60, x: 50, color: 'blue', direction: 'right' })}
-          {this.makePiece('yellow1', { x: -60, y: -50, color: 'yellow', direction: 'up' })}
-          {this.makePiece('yellow2', { x:   0, y: -50, color: 'yellow', direction: 'up' })}
-          {this.makePiece('yellow3', { x:  60, y: -50, color: 'yellow', direction: 'up' })}
+          {this.makePiece('red1', { x: -60, y: 50, color: 'red' })}
+          {this.makePiece('red2', { x:   0, y: 50, color: 'red' })}
+          {this.makePiece('red3', { x:  60, y: 50, color: 'red' })}
+          {this.makePiece('green1', { y: -60, x: -50, color: 'green' })}
+          {this.makePiece('green2', { y:   0, x: -50, color: 'green' })}
+          {this.makePiece('green3', { y:  60, x: -50, color: 'green' })}
+          {this.makePiece('blue1', { y: -60, x: 50, color: 'blue' })}
+          {this.makePiece('blue2', { y:   0, x: 50, color: 'blue' })}
+          {this.makePiece('blue3', { y:  60, x: 50, color: 'blue' })}
+          {this.makePiece('yellow1', { x: -60, y: -50, color: 'yellow' })}
+          {this.makePiece('yellow2', { x:   0, y: -50, color: 'yellow' })}
+          {this.makePiece('yellow3', { x:  60, y: -50, color: 'yellow' })}
         </svg>
       </div>
     );

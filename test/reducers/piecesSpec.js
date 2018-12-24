@@ -4,8 +4,8 @@ import reducer from 'reducers/pieces';
 describe('reducer', () => {
   it('returns the initial state', () => {
     const subject = reducer();
-    expect(subject).to.have.property('red1').deep.equal({ position: { row: 0, col: 1 } });
-    expect(subject).to.have.property('yellow3').deep.equal({ position: { row: 5, col: 3 } });
+    expect(subject).to.have.property('red1').deep.equal({ position: { row: 0, col: 1 }, direction: 'down' });
+    expect(subject).to.have.property('yellow3').deep.equal({ position: { row: 5, col: 3 }, direction: 'up' });
   });
 
   describe('with state', () => {
@@ -36,6 +36,11 @@ describe('reducer', () => {
     it('moves left', () => {
       const subject = reducer(state, move('red1', 'left'));
       expect(subject).to.have.property('red1').deep.equal({ position: { row: 4, col: 1 } });
+    });
+
+    it('stays put', () => {
+      const subject = reducer(state, move('red1'));
+      expect(subject).to.have.property('red1').deep.equal({ position: { row: 4, col: 2 } });
     });
   });
 });

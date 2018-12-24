@@ -1,18 +1,18 @@
 import { MOVE } from 'actions/types';
 
 const initialState = {
-  red1: { position: { row: 0, col: 1 } },
-  red2: { position: { row: 0, col: 1 } },
-  red3: { position: { row: 0, col: 1 } },
-  green1: { position: { row: 1, col: 5 } },
-  green2: { position: { row: 1, col: 5 } },
-  green3: { position: { row: 1, col: 5 } },
-  blue1: { position: { row: 2, col: 0 } },
-  blue2: { position: { row: 2, col: 0 } },
-  blue3: { position: { row: 2, col: 0 } },
-  yellow1: { position: { row: 5, col: 3 } },
-  yellow2: { position: { row: 5, col: 3 } },
-  yellow3: { position: { row: 5, col: 3 } }
+  red1: { position: { row: 0, col: 1 }, direction: 'down' },
+  red2: { position: { row: 0, col: 1 }, direction: 'down' },
+  red3: { position: { row: 0, col: 1 }, direction: 'down' },
+  green1: { position: { row: 1, col: 5 }, direction: 'left' },
+  green2: { position: { row: 1, col: 5 }, direction: 'left' },
+  green3: { position: { row: 1, col: 5 }, direction: 'left' },
+  blue1: { position: { row: 2, col: 0 }, direction: 'right' },
+  blue2: { position: { row: 2, col: 0 }, direction: 'right' },
+  blue3: { position: { row: 2, col: 0 }, direction: 'right' },
+  yellow1: { position: { row: 5, col: 3 }, direction: 'up' },
+  yellow2: { position: { row: 5, col: 3 }, direction: 'up' },
+  yellow3: { position: { row: 5, col: 3 }, direction: 'up' }
 };
 
 function nextPosition({ row, col }, direction) {
@@ -25,6 +25,8 @@ function nextPosition({ row, col }, direction) {
     return { col: col + 1, row };
   case 'left':
     return { col: col - 1, row };
+  default:
+    return { row, col };
   }
 }
 

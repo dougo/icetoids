@@ -63,16 +63,16 @@ describe('App', () => {
     expect(pieces.at(11)).to.have.bbox({ x: 760, y: 1050 });
   });
 
-  it('moves a piece when you click on it', () => {
+  it('moves a piece when you click on it and becomes upright', () => {
     const subject = mountSubject();
     const piece = subject.find('use[href="#piece"]').first();
     expect(piece).to.have.bbox({ x: 220, y: 100 });
     piece.simulate('click');
-    expect(piece).to.have.bbox({ x: 220, y: 310 });
+    expect(piece).to.have.bbox({ x: 220, y: 330, width: 60, height: 60 });
 
     const piece2 = subject.find('use[href="#piece"]').last();
     expect(piece2).to.have.bbox({ x: 760, y: 1050 });
     piece2.simulate('click');
-    expect(piece2).to.have.bbox({ x: 760, y: 840 });
+    expect(piece2).to.have.bbox({ x: 760, y: 860, width: 60, height: 60 });
   });
 });
