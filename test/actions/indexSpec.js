@@ -1,4 +1,4 @@
-import { MOVE } from 'actions/actionTypes';
+import { MOVE } from 'actions/types';
 import { move } from 'actions';
 
 describe('action creator', () => {

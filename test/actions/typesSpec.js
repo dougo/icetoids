@@ -1,4 +1,4 @@
-import { MOVE } from 'actions/actionTypes';
+import { MOVE } from 'actions/types';
 
 describe('action type', () => {
   it('MOVE is defined', () => {

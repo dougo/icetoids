@@ -1,4 +1,4 @@
-import { MOVE } from 'actions/actionTypes';
+import { MOVE } from 'actions/types';
 
 const initialState = {
   red1: { position: { row: 0, col: 1 } },
