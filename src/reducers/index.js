@@ -1,1 +1,1 @@
-export { default as pieces } from 'reducers/piecesReducer';
+export { default as pieces } from 'reducers/pieces';

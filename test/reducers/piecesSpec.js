@@ -1,5 +1,5 @@
 import { move } from 'actions';
-import reducer from 'reducers/piecesReducer';
+import reducer from 'reducers/pieces';
 
 describe('reducer', () => {
   it('returns the initial state', () => {
