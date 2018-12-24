@@ -9,8 +9,8 @@ describe('App', () => {
   const root = document.createElement('div');
   document.body.append(root);
 
-  const mountSubject = () => {
-    const store = createStore(combineReducers(reducers));
+  const mountSubject = (state = {}) => {
+    const store = createStore(combineReducers(reducers), state);
     return mount(<Provider store={store}><App /></Provider>, { attachTo: root });
   };
 
@@ -77,11 +77,18 @@ describe('App', () => {
   });
 
   it('selects an upright piece when you click on it', () => {
-    const subject = mountSubject();
-    const piece = subject.find('use[href="#piece"]').first();
+    const subject = mountSubject({ pieces: { red1: { position: { } } } });
+    const piece = subject.find('use[href="#upright"]');
+    expect(piece).to.have.bbox({ x: 10, y: 120, width: 60, height: 60 });
     piece.simulate('click');
-    expect(piece).to.have.bbox({ x: 220, y: 330, width: 60, height: 60 });
+    expect(subject).to.have.exactly(4).descendants('use[href="#piece"]');
+  });
+
+  it('unselects a selected piece when you click elsewhere', () => {
+    const subject = mountSubject({ pieces: { red1: { position: { } } } });
+    const piece = subject.find('use[href="#upright"]');
     piece.simulate('click');
-    expect(subject).to.have.exactly(15).descendants('use[href="#piece"]'); // 12 - 1 upright + 4 options
+    subject.find('use[href="#tile"]').first().simulate('click');
+    expect(subject).not.to.have.descendants('use[href="#piece"]');
   });
 });

@@ -7,12 +7,13 @@ import Piece from 'components/Piece';
 
 class App extends Component {
   makePiece(id, props) {
+    if (!this.props.pieces[id]) return;
     const { position: { row, col }, direction } = this.props.pieces[id];
     const isSelected = this.state && this.state.selected === id;
     return (
       <Space row={row} col={col}>
         <Piece {...props} isSelected={isSelected} direction={direction}
-               select={() => this.setState({ selected: id })}
+               select={e => { e.stopPropagation(); this.setState({ selected: id }); }}
                move={() => this.props.move(id, direction)} />
       </Space>
     );
@@ -27,7 +28,7 @@ class App extends Component {
     }
 
     return (
-      <div>
+      <div onClick={() => this.setState({ selected: undefined })}>
         <h1>IceToids</h1>
         <svg viewBox='100 100 1050 1050' width='1050'>
           <defs>
