@@ -8,9 +8,12 @@ import Piece from 'components/Piece';
 class App extends Component {
   makePiece(id, props) {
     const { position: { row, col }, direction } = this.props.pieces[id];
+    const isSelected = this.state && this.state.selected === id;
     return (
       <Space row={row} col={col}>
-        <Piece {...props} direction={direction} move={() => this.props.move(id, direction)}/>
+        <Piece {...props} isSelected={isSelected} direction={direction}
+               select={() => this.setState({ selected: id })}
+               move={() => this.props.move(id, direction)} />
       </Space>
     );
   }

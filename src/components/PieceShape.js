@@ -17,11 +17,11 @@ export default class PieceShape extends Component {
   }
 
   render() {
-    const { color, direction, move } = this.props;
+    const { color, direction, onClick } = this.props;
     const transform = direction && `rotate(${this.degrees(direction)})`;
     const href = direction ? '#piece' : '#upright';
     return (
-      <use href={href} fill={color} transform={transform} onClick={move} />
+      <use href={href} fill={color} transform={transform} onClick={onClick} />
     );
   }
 }

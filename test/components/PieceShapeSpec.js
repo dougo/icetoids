@@ -63,10 +63,10 @@ describe('PieceShape', () => {
     expect(subject).to.have.attr('transform', 'rotate(270)');
   });
 
-  it('calls move when clicked on', () => {
-    const move = sinon.stub();
-    const subject = mountSubject({ move });
+  it('calls onClick when clicked on', () => {
+    const onClick = sinon.stub();
+    const subject = mountSubject({ onClick });
     subject.simulate('click');
-    expect(move).to.have.been.called;
+    expect(onClick).to.have.been.called;
   });
 });
