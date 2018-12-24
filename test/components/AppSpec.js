@@ -77,11 +77,14 @@ describe('App', () => {
   });
 
   it('selects an upright piece when you click on it', () => {
-    const subject = mountSubject({ pieces: { red1: { position: { } } } });
+    const subject = mountSubject({ pieces: { red1: { position: { row: 1, col: 1 } } } });
     const piece = subject.find('use[href="#upright"]');
-    expect(piece).to.have.bbox({ x: 10, y: 120, width: 60, height: 60 });
+    expect(piece).to.have.bbox({ x: 220, y: 330, width: 60, height: 60 });
     piece.simulate('click');
     expect(subject).to.have.exactly(4).descendants('use[href="#piece"]');
+    const directions = subject.find('use[href="#piece"]');
+    expect(directions.first()).to.have.bbox({ x: 235, y: 270, width: 30, height: 50 });
+    expect(directions.last()).to.have.bbox({ x: 160, y: 345, width: 50, height: 30 });
   });
 
   it('unselects a selected piece when you click elsewhere', () => {

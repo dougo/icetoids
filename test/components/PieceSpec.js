@@ -44,9 +44,9 @@ describe('Piece', () => {
     const props = { isSelected: true };
 
     describe('when upright', () => {
-      it('displays four directions', () => {
-        const subject = mountSubject(props);
-        expect(subject).to.have.exactly(4).descendants('use[href="#piece"]');
+      it('displays four options', () => {
+        const subject = mountSubject({ ...props, color: 'blue' });
+        expect(subject).to.have.exactly(4).descendants('use[href="#piece"][fill="blue"]');
       });
     });
   });
