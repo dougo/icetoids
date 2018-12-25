@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { hot } from 'react-hot-loader/root';
 import * as actions from 'actions';
 import Space from 'components/Space';
 import Tile from 'components/Tile';
@@ -60,4 +61,4 @@ class App extends Component {
   }
 }
 
-export default connect(state => state, actions)(App);
+export default hot(connect(state => state, actions)(App));

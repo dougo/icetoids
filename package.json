@@ -4,7 +4,7 @@
   "description": "A web-playable implementation of the board game IceToids by Andy Looney.",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --open",
+    "start": "webpack-dev-server --hot --open",
     "test": "karma start"
   },
   "repository": {
@@ -25,6 +25,7 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-error-boundary": "^1.2.3",
+    "react-hot-loader": "^4.6.3",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1"
   },
