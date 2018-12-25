@@ -6,10 +6,15 @@ import Tile from 'components/Tile';
 import Piece from 'components/Piece';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   makePiece(id, props) {
     if (!this.props.pieces[id]) return;
     const { position: { row, col }, direction } = this.props.pieces[id];
-    const isSelected = this.state && this.state.selected === id;
+    const isSelected = this.state.selected === id;
     return (
       <Space row={row} col={col}>
         <Piece {...props} isSelected={isSelected} direction={direction}
