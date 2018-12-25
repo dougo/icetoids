@@ -25,6 +25,13 @@ describe('Piece', () => {
     expect(subject).to.have.attr('transform', 'translate(60,100)');
   });
 
+  it('can be selected when pointed in a direction', () => {
+    const select = sinon.stub();
+    const subject = mountSubject({ direction: 'left', select });
+    subject.find('use[href="#piece"]').simulate('click');
+    expect(select).to.have.been.called;
+  });
+
   it('can be selected when upright', () => {
     const select = sinon.stub();
     const subject = mountSubject({ select });
@@ -32,16 +39,18 @@ describe('Piece', () => {
     expect(select).to.have.been.called;
   });
 
-  it('can be moved when pointed in a direction', () => {
-    const move = sinon.stub();
-    const subject = mountSubject({ direction: 'up', move });
-    subject.find('use[href="#piece"]').simulate('click');
-    expect(move).to.have.been.called;
-  });
-
-
   describe('when selected', () => {
     const props = { isSelected: true };
+
+    describe('when pointed in a direction', () => {
+      it('can be moved in that direction', () => {
+        const move = sinon.stub();
+        const subject = mountSubject({ ...props, direction: 'up', move });
+        expect(subject).to.have.exactly(2).descendants('use[href="#piece"]');
+        subject.find('use[href="#piece"]').last().simulate('click');
+        expect(move).to.have.been.called;
+      });
+    });
 
     describe('when upright', () => {
       it('displays four options and points when one is clicked', () => {

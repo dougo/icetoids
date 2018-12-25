@@ -14,7 +14,7 @@ describe('App', () => {
     return mount(<Provider store={store}><App /></Provider>, { attachTo: root });
   };
 
-  it('renders a title and tiles', () => {
+  it('renders a title, tiles, and pieces', () => {
     const subject = mountSubject();
     expect(subject).to.have.descendants('h1');
     expect(subject.find('h1')).to.have.text('IceToids');
@@ -63,17 +63,23 @@ describe('App', () => {
     expect(pieces.at(11)).to.have.bbox({ x: 760, y: 1050 });
   });
 
-  it('moves a piece when you click on it and it becomes upright', () => {
-    const subject = mountSubject();
-    const piece = subject.find('use[href="#piece"]').first();
-    expect(piece).to.have.bbox({ x: 220, y: 100 });
+  it('selects a flat piece when you click on it', () => {
+    const subject = mountSubject({ pieces: { red1: { position: { row: 0, col: 1 }, direction: 'down' } } });
+    const piece = subject.find('use[href="#piece"]');
+    expect(piece).to.have.bbox({ x: 220, y: 100, width: 60, height: 100 });
     piece.simulate('click');
-    expect(piece).to.have.bbox({ x: 220, y: 330, width: 60, height: 60 });
+    expect(subject).to.have.exactly(2).descendants('use[href="#piece"]');
+    const down = subject.find('use[href="#piece"]').last();
+    expect(down).to.have.bbox({ x: 220, y: 210, width: 60, height: 100 });
+  });
 
-    const piece2 = subject.find('use[href="#piece"]').last();
-    expect(piece2).to.have.bbox({ x: 760, y: 1050 });
-    piece2.simulate('click');
-    expect(piece2).to.have.bbox({ x: 760, y: 860, width: 60, height: 60 });
+  it('moves a piece when you select it and click on the move option, and it becomes upright', () => {
+    const subject = mountSubject({ pieces: { red1: { position: { row: 0, col: 1 }, direction: 'down' } } });
+    const piece = subject.find('use[href="#piece"]');
+    piece.simulate('click');
+    const down = subject.find('use[href="#piece"]').last();
+    down.simulate('click');
+    expect(piece).to.have.bbox({ x: 220, y: 330, width: 60, height: 60 });
   });
 
   it('selects an upright piece when you click on it', () => {
@@ -87,14 +93,6 @@ describe('App', () => {
     expect(directions.last()).to.have.bbox({ x: 160, y: 345, width: 50, height: 30 });
   });
 
-  it('unselects a selected piece when you click elsewhere', () => {
-    const subject = mountSubject({ pieces: { red1: { position: { } } } });
-    const piece = subject.find('use[href="#upright"]');
-    piece.simulate('click');
-    subject.find('use[href="#tile"]').first().simulate('click');
-    expect(subject).not.to.have.descendants('use[href="#piece"]');
-  });
-
   it('points an upright piece when you select it and click on one of the options', () => {
     const subject = mountSubject({ pieces: { red1: { position: { row: 1, col: 1 } } } });
     const piece = subject.find('use[href="#upright"]');
@@ -102,5 +100,13 @@ describe('App', () => {
     subject.find('use[href="#piece"]').first().simulate('click');
     expect(piece).to.have.attr('href', '#piece');
     expect(piece).to.have.bbox({ x: 220, y: 310, width: 60, height: 100 });
+  });
+
+  it('unselects a selected piece when you click elsewhere', () => {
+    const subject = mountSubject({ pieces: { red1: { position: { } } } });
+    const piece = subject.find('use[href="#upright"]');
+    piece.simulate('click');
+    subject.find('use[href="#tile"]').first().simulate('click');
+    expect(subject).not.to.have.descendants('use[href="#piece"]');
   });
 });

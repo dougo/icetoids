@@ -19,11 +19,23 @@ describe('Options', () => {
     expect(opts.at(3)).to.have.attr('transform', 'translate(-130,0)');
   });
 
-  it('calls point with a direction when you click on an option', () => {
-    const point = sinon.stub();
-    const subject = mountSubject({ point });
+  it('calls action with a direction when you click on an option', () => {
+    const action = sinon.stub();
+    const subject = mountSubject({ action });
     const right = subject.find('use[href="#piece"]').at(1);
     right.simulate('click');
-    expect(point).to.have.been.calledWith('right');
+    expect(action).to.have.been.calledWith('right');
+  });
+
+  describe('with a direction', () => {
+    const props = { direction: 'right' };
+
+    it('renders a full-size piece in the direction', () => {
+    const subject = mountSubject(props);
+      expect(subject).not.to.have.attr('transform');
+      expect(subject).to.have.exactly(1).descendants('use[href="#piece"]');
+      const opt = subject.find('g').last();
+      expect(opt).to.have.attr('transform', 'translate(110,0)');
+    });
   });
 });
