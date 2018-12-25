@@ -14,6 +14,7 @@ class App extends Component {
       <Space row={row} col={col}>
         <Piece {...props} isSelected={isSelected} direction={direction}
                select={e => { e.stopPropagation(); this.setState({ selected: id }); }}
+               point={direction => this.props.point(id, direction)}
                move={() => this.props.move(id, direction)} />
       </Space>
     );

@@ -1,4 +1,4 @@
-import { move } from 'actions';
+import { move, point } from 'actions';
 import reducer from 'reducers/pieces';
 
 describe('reducer', () => {
@@ -41,6 +41,11 @@ describe('reducer', () => {
     it('stays put', () => {
       const subject = reducer(state, move('red1'));
       expect(subject).to.have.property('red1').deep.equal({ position: { row: 4, col: 2 } });
+    });
+
+    it('points in a direction', () => {
+      const subject = reducer(state, point('red1', 'down'));
+      expect(subject).to.have.property('red1').deep.equal({ position: { row: 4, col: 2 }, direction: 'down' });
     });
   });
 });

@@ -18,4 +18,12 @@ describe('Options', () => {
     expect(opts.at(2)).to.have.attr('transform', 'translate(0,130)');
     expect(opts.at(3)).to.have.attr('transform', 'translate(-130,0)');
   });
+
+  it('calls point with a direction when you click on an option', () => {
+    const point = sinon.stub();
+    const subject = mountSubject({ point });
+    const right = subject.find('use[href="#piece"]').at(1);
+    right.simulate('click');
+    expect(point).to.have.been.calledWith('right');
+  });
 });

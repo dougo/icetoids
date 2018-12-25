@@ -1,4 +1,4 @@
-import { MOVE } from 'actions/types';
+import { MOVE, POINT } from 'actions/types';
 
 const initialState = {
   red1: { position: { row: 0, col: 1 }, direction: 'down' },
@@ -38,6 +38,9 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
   case MOVE:
     return nextState(state, action);
+  case POINT:
+    const { id, direction } = action;
+    return { ...state, [id]: { ...state[id], direction } };
   default:
     return state;
   }

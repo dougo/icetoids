@@ -44,9 +44,12 @@ describe('Piece', () => {
     const props = { isSelected: true };
 
     describe('when upright', () => {
-      it('displays four options', () => {
-        const subject = mountSubject({ ...props, color: 'blue' });
+      it('displays four options and points when one is clicked', () => {
+        const point = sinon.stub();
+        const subject = mountSubject({ ...props, color: 'blue', point });
         expect(subject).to.have.exactly(4).descendants('use[href="#piece"][fill="blue"]');
+        subject.find('use[href="#piece"]').at(2).simulate('click');
+        expect(point).to.have.been.calledWith('down');
       });
     });
   });

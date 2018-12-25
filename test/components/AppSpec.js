@@ -94,4 +94,13 @@ describe('App', () => {
     subject.find('use[href="#tile"]').first().simulate('click');
     expect(subject).not.to.have.descendants('use[href="#piece"]');
   });
+
+  it('points an upright piece when you select it and click on one of the options', () => {
+    const subject = mountSubject({ pieces: { red1: { position: { row: 1, col: 1 } } } });
+    const piece = subject.find('use[href="#upright"]');
+    piece.simulate('click');
+    subject.find('use[href="#piece"]').first().simulate('click');
+    expect(piece).to.have.attr('href', '#piece');
+    expect(piece).to.have.bbox({ x: 220, y: 310, width: 60, height: 100 });
+  });
 });
