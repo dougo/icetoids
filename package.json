@@ -46,12 +46,12 @@
     "karma-mocha": "^2.0.1",
     "karma-sinon-chai": "^2.0.2",
     "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^4.0.0-rc.5",
+    "karma-webpack": "^5.0.1",
     "mocha": "^10.2.0",
     "sinon": "^7.2.2",
     "sinon-chai": "^3.3.0",
     "webpack": "^4.27.1",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.3"
+    "webpack-dev-server": "^5.0.4"
   }
 }
